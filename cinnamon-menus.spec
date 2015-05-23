@@ -17,6 +17,7 @@ URL: http://cinnamon.linuxmint.com
 Source0:       %{name}-%{version}.tar.gz
 #SourceGet0: https://github.com/linuxmint/%{name}/archive/%{version}.tar.gz
 
+BuildRequires: gnome-common
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig
 BuildRequires: python-devel
@@ -49,6 +50,7 @@ The cinnamon-menu library, a part of %{name}\
 
 %prep
 %setup -q
+sh autogen.sh
 
 %build
 %configure --disable-static \
