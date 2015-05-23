@@ -1,12 +1,15 @@
 %global enable_debugging 0
 #global _internal_version f22e07d
-
+%define api 3.0
+%define shortapi 3
+%define major 0
+%define libname %mklibname cinnamon-menu %shortapi %major
 Summary:  A menu system for the Cinnamon project
 Name: cinnamon-menus
-Version: 2.4.0
-Release: %mkrel 2
+Version: 2.4.2
+Release: 1
 License: LGPLv2+
-Group: Graphical desktop/Cinnamon
+Group: Graphical desktop/Other
 URL: http://cinnamon.linuxmint.com 
 # for git
 # wget https://github.com/linuxmint/cinnamon-menus/tarball/%%{_internal_version} -O cinnamon-menus-%%{version}.git%%{_internal_version}.tar.gz
@@ -14,7 +17,7 @@ URL: http://cinnamon.linuxmint.com
 Source0:       %{name}-%{version}.tar.gz
 #SourceGet0: https://github.com/linuxmint/%{name}/archive/%{version}.tar.gz
 
-BuildRequires: glib2-devel
+BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig
 BuildRequires: python-devel
 BuildRequires: intltool
@@ -31,10 +34,18 @@ Python bindings, and a simple menu editor.
 Summary: Libraries and include files for the Cinnamon menu system
 Group: Development/C
 Requires: %{name}%{?_isa} = %{version}-%{release}
+Requires: %libname = %{version}-%{release}
 
 %description devel
 This package provides the necessary development libraries for
 writing applications that use the Cinnamon menu system.
+
+%package -n %libname
+Summary: The cinnamon-menu library, a part of %{name}
+Group: System/Libraries
+
+%description -n %libname
+The cinnamon-menu library, a part of %{name}\
 
 %prep
 %setup -q
@@ -62,14 +73,17 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 %files
 %doc AUTHORS NEWS COPYING.LIB
-%{_libdir}/lib*.so.*
-%{_libdir}/girepository-1.0/CMenu-3.0.typelib
+%{_libdir}/girepository-1.0/CMenu-%{api}.typelib
 
 %files devel
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/*
-%{_includedir}/cinnamon-menus-3.0
-%{_datadir}/gir-1.0/CMenu-3.0.gir
+%{_includedir}/cinnamon-menus-%{api}
+%{_datadir}/gir-1.0/CMenu-%{api}.gir
+
+%files -n %libname
+%{_libdir}/libcinnamon-menu-%{shortapi}.so.%{major}*
+
 
 
 
