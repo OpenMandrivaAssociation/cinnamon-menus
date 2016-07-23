@@ -1,19 +1,16 @@
 %global enable_debugging 0
-#global _internal_version f22e07d
 %define api 3.0
 %define shortapi 3
 %define major 0
 %define libname %mklibname cinnamon-menu %shortapi %major
 Summary:  A menu system for the Cinnamon project
 Name: cinnamon-menus
-Version: 2.6.0
+Version: 3.0.2
 Release: 1
 License: LGPLv2+
 Group: Graphical desktop/Other
 URL: http://cinnamon.linuxmint.com 
 # for git
-# wget https://github.com/linuxmint/cinnamon-menus/tarball/%%{_internal_version} -O cinnamon-menus-%%{version}.git%%{_internal_version}.tar.gz
-#Source0:        http://leigh123linux.fedorapeople.org/pub/%{name}/source/%{name}-%{version}.git%{_internal_version}.tar.gz
 Source0:       %{name}-%{version}.tar.gz
 #SourceGet0: https://github.com/linuxmint/%{name}/archive/%{version}.tar.gz
 
