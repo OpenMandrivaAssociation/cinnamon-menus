@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   cinnamon-menus-3.2.0.tar.gz: 83954c9e49b2934769394e79ba1088329c961df8
+sources:
+  cinnamon-menus-4.0.0.tar.gz: ce3ea0995d5897545f98760eecd1e208adf0296d

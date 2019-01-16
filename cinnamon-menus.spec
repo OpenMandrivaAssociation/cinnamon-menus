@@ -5,7 +5,7 @@
 %define libname %mklibname cinnamon-menu %shortapi %major
 Summary:  A menu system for the Cinnamon project
 Name: cinnamon-menus
-Version: 3.2.0
+Version: 4.0.0
 Release: 1
 License: LGPLv2+
 Group: Graphical desktop/Other
