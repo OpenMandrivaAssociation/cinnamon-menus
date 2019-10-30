@@ -1,4 +1,3 @@
-%global enable_debugging 0
 %define api 3.0
 %define shortapi 3
 %define major 0
@@ -14,6 +13,7 @@ URL: http://cinnamon.linuxmint.com
 Source0:       %{name}-%{version}.tar.gz
 #SourceGet0: https://github.com/linuxmint/%{name}/archive/%{version}.tar.gz
 
+BuildRequires: meson
 BuildRequires: gnome-common
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig
@@ -47,22 +47,14 @@ The cinnamon-menu library, a part of %{name}\
 
 %prep
 %setup -q
-sh autogen.sh
 
 %build
-%configure --disable-static \
-   --enable-introspection \
-%if %{enable_debugging}
-   --enable-debug=yes
-%else
-   --enable-debug=no
-%endif
-
-make %{?_smp_mflags} V=1
+%meson -Denable_debug=false
+%meson_build
 
 
 %install
-%{make_install}
+%meson_install
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
