@@ -9,9 +9,7 @@ Release: 1
 License: LGPLv2+
 Group: Graphical desktop/Other
 URL: http://cinnamon.linuxmint.com 
-# for git
-Source0:       %{name}-%{version}.tar.gz
-#SourceGet0: https://github.com/linuxmint/%{name}/archive/%{version}.tar.gz
+Source0:       https://github.com/linuxmint/cinnamon-menus/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires: meson
 BuildRequires: gnome-common
