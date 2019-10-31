@@ -1,19 +1,17 @@
-%global enable_debugging 0
 %define api 3.0
 %define shortapi 3
 %define major 0
 %define libname %mklibname cinnamon-menu %shortapi %major
 Summary:  A menu system for the Cinnamon project
 Name: cinnamon-menus
-Version: 4.0.0
+Version: 4.2.0
 Release: 1
 License: LGPLv2+
 Group: Graphical desktop/Other
 URL: http://cinnamon.linuxmint.com 
-# for git
-Source0:       %{name}-%{version}.tar.gz
-#SourceGet0: https://github.com/linuxmint/%{name}/archive/%{version}.tar.gz
+Source0:       https://github.com/linuxmint/cinnamon-menus/archive/%{version}/%{name}-%{version}.tar.gz
 
+BuildRequires: meson
 BuildRequires: gnome-common
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig
@@ -47,22 +45,14 @@ The cinnamon-menu library, a part of %{name}\
 
 %prep
 %setup -q
-sh autogen.sh
 
 %build
-%configure --disable-static \
-   --enable-introspection \
-%if %{enable_debugging}
-   --enable-debug=yes
-%else
-   --enable-debug=no
-%endif
-
-make %{?_smp_mflags} V=1
+%meson -Denable_debug=false
+%meson_build
 
 
 %install
-%{make_install}
+%meson_install
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 
