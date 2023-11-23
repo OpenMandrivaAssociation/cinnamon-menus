@@ -4,7 +4,7 @@
 %define libname %mklibname cinnamon-menu %shortapi %major
 Summary:  A menu system for the Cinnamon project
 Name: cinnamon-menus
-Version: 5.8.0
+Version: 6.0.0
 Release: 1
 License: LGPLv2+
 Group: Graphical desktop/Other
@@ -17,7 +17,7 @@ BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig
 BuildRequires: python-devel
 BuildRequires: intltool
-BuildRequires: gobject-introspection-devel
+BuildRequires: pkgconfig(gobject-introspection-1.0)
 
 %description
 cinnamon-menus is an implementation of the draft "Desktop
