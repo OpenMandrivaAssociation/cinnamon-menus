@@ -8,7 +8,7 @@ Version: 6.2.0
 Release: 1
 License: LGPLv2+
 Group: Graphical desktop/Other
-URL: http://cinnamon.linuxmint.com 
+URL: https://cinnamon.linuxmint.com 
 Source0:       https://github.com/linuxmint/cinnamon-menus/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires: meson
