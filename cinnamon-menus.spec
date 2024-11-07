@@ -5,7 +5,7 @@
 Summary:  A menu system for the Cinnamon project
 Name: cinnamon-menus
 Version: 6.2.0
-Release: 1
+Release: 2
 License: LGPLv2+
 Group: Graphical desktop/Other
 URL: https://cinnamon.linuxmint.com 
@@ -18,6 +18,8 @@ BuildRequires: pkgconfig
 BuildRequires: python-devel
 BuildRequires: intltool
 BuildRequires: pkgconfig(gobject-introspection-1.0)
+
+Requires: %{libname} = %{version}-%{release}
 
 %description
 cinnamon-menus is an implementation of the draft "Desktop
