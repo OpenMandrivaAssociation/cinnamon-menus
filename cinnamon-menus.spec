@@ -5,12 +5,13 @@
 Summary:  A menu system for the Cinnamon project
 Name: cinnamon-menus
 Version: 6.4.0
-Release: 1
+Release: 2
 License: LGPLv2+
 Group: Graphical desktop/Other
 URL: https://cinnamon.linuxmint.com 
 Source0:       https://github.com/linuxmint/cinnamon-menus/archive/%{version}/%{name}-%{version}.tar.gz
 
+BuildRequires: mold
 BuildRequires: meson
 BuildRequires: gnome-common
 BuildRequires: pkgconfig(glib-2.0)
@@ -49,6 +50,9 @@ The cinnamon-menu library, a part of %{name}\
 %setup -q
 
 %build
+%global optflags %{optflags} -fuse-ld=mold
+export CC=gcc
+export CXX=g++
 %meson -Denable_debug=false
 %meson_build
 
@@ -56,11 +60,6 @@ The cinnamon-menu library, a part of %{name}\
 %install
 %meson_install
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
-
-
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
 
 %files
 %doc AUTHORS NEWS COPYING.LIB
