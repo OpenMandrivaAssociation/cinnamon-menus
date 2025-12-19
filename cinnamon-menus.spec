@@ -4,15 +4,17 @@
 %define libname %mklibname cinnamon-menu %shortapi %major
 Summary:  A menu system for the Cinnamon project
 Name: cinnamon-menus
-Version: 6.4.0
-Release: 2
+Version: 6.6.0
+Release: 1
 License: LGPLv2+
 Group: Graphical desktop/Other
 URL: https://cinnamon.linuxmint.com 
 Source0:       https://github.com/linuxmint/cinnamon-menus/archive/%{version}/%{name}-%{version}.tar.gz
 
+BuildSystem:   meson
+BuildOption:   -Denable_debug=false
+
 BuildRequires: mold
-BuildRequires: meson
 BuildRequires: gnome-common
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig
@@ -46,19 +48,8 @@ Group: System/Libraries
 %description -n %libname
 The cinnamon-menu library, a part of %{name}\
 
-%prep
-%setup -q
 
-%build
-%global optflags %{optflags} -fuse-ld=mold
-export CC=gcc
-export CXX=g++
-%meson -Denable_debug=false
-%meson_build
-
-
-%install
-%meson_install
+%install -a
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 %files
